@@ -1,27 +1,29 @@
-#name: Build & Test
-#
-#on:
-#  pull_request:
-#    branches:
-#      - main
-#
-#jobs:
-#  build:
-#    name: Create Release
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#      - name: Install dependencies
-#        uses: borales/actions-yarn@v2.3.0
-#        with:
-#          cmd: install # will run `yarn install` command
-#      - name: format check
-#        uses: borales/actions-yarn@v2.3.0
-#        with:
-#          cmd: run format:check
-#      - name: Build
-#        uses: borales/actions-yarn@v2.3.0
-#        with:
-#          cmd: build # will run `yarn build` command
-#
+name: Node.js CI
+
+on:
+  pull_request:
+    branches:
+      - "main"
+      - "develop"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn test --coverage
+#      - name: SonarCloud Scan
+#        uses: SonarSource/sonarcloud-github-action@master
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
