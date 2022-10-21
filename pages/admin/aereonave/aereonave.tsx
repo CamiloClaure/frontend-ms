@@ -15,7 +15,7 @@ import {AereonaveForm} from "../../../components/AereonaveForm/AereonaveForm";
 export default function AereonaveView() {
   const headCells: GridColDef[] = [
     {
-      field: "customer_ref",
+      field: "estadoAeronave",
       headerName: "Customer",
       flex: 1,
       cellClassName: (params: GridCellParams<number>) =>
@@ -24,10 +24,10 @@ export default function AereonaveView() {
           positive: params.row.credit_limit > params.row.order_amount
         })
     },
-    {field: "order_amount", headerName: "Order Amount", flex: 1},
-    {field: "credit_limit", headerName: "Credit Limit", flex: 1},
-    {field: "agreement_status", headerName: "Agreement Status", flex: 1},
-    {field: "term", headerName: "Term", flex: 1}
+    {field: "marca", headerName: "Order Amount", flex: 1},
+    {field: "modelo", headerName: "Credit Limit", flex: 1},
+    {field: "capacidad", headerName: "Agreement Status", flex: 1},
+    {field: "nroAsientos", headerName: "Term", flex: 1}
   ]
 
   const session = { accessToken: "test"}
