@@ -7,6 +7,7 @@ const formatPath = (path: string) => {
 const ROUTES = {
   // LOAD
   VUELO_CREAR_API: formatPath("/Vuelo/CrearVuelo"),
+  VUELO_ACTIVOS_API: formatPath("/Vuelo/vuelosactivos"),
   EMPLEADO_API: formatPath("/api/Empleado"),
   AEREONAVE_API: formatPath("/Aeronaves"),
   CHECKIN_API: formatPath("/Checkin"),

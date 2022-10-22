@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import useSWR from "swr"
 
 import {GridCellParams, GridColDef} from "@mui/x-data-grid-pro"
@@ -17,33 +17,32 @@ export default function AereonaveView() {
   const headCells: GridColDef[] = [
     {
       field: "estadoAeronave",
-      headerName: "Customer",
+      headerName: "estadoAeronave",
       flex: 1,
-      cellClassName: (params: GridCellParams<number>) =>
-        clsx("super-app", {
-          negative: params.row.credit_limit > 0 && params.row.credit_limit < params.row.order_amount,
-          positive: params.row.credit_limit > params.row.order_amount
-        })
     },
-    {field: "marca", headerName: "Order Amount", flex: 1},
-    {field: "modelo", headerName: "Credit Limit", flex: 1},
-    {field: "capacidad", headerName: "Agreement Status", flex: 1},
-    {field: "nroAsientos", headerName: "Term", flex: 1},
-    {field: "capacidadTanque", headerName: "Term", flex: 1},
-    {field: "aeropuerto", headerName: "Term", flex: 1}
+    {field: "marca", headerName: "marca", flex: 1},
+    {field: "modelo", headerName: "modelo", flex: 1},
+    {field: "capacidad", headerName: "capacidad", flex: 1},
+    {field: "nroAsientos", headerName: "nroAsientos", flex: 1},
+    {field: "capacidadTanque", headerName: "capacidadTanque", flex: 1},
+    {field: "aeropuerto", headerName: "aeropuerto", flex: 1}
   ]
 
   const session = { accessToken: "test"}
   const [openCreate, setOpenCreate] = useState(false)
-  let {data: values = []} = useSWR([process.env.NEXT_PUBLIC_BASE_URL + ROUTES.AEREONAVE_API], fetcherGet)
-  console.log(openCreate)
+  const [data, setData] = useState([])
   const hideCreate = () => {
     setOpenCreate(false)
   }
   const createAereonave = () => {
     setOpenCreate(true)
   }
-
+  useEffect(() => {
+    fetcherGet(ROUTES.AEREONAVE_API, session.accessToken as string).then(data => {
+      console.log(data)
+      setData(data)
+    })
+  }, [])
   return (
     <DashboardComponent title={"Crear Aereonave"}>
       <Box
@@ -60,7 +59,6 @@ export default function AereonaveView() {
             fontWeight: "600"
           }
         }}>
-        <DataGridComponent data={values} headCells={headCells} />
         <IconButton
           onClick={createAereonave}
           aria-label="delete"
@@ -68,6 +66,7 @@ export default function AereonaveView() {
           style={{float: "right", marginTop: "-5px"}}>
           CREAR
         </IconButton>
+        <DataGridComponent data={data} headCells={headCells} />
         <Modal title="Crear Aereonave" open={openCreate} handleClose={hideCreate} size="xl">
           <AereonaveForm editMode={false}></AereonaveForm>
         </Modal>
