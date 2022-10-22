@@ -44,7 +44,9 @@ export const VentaForm: React.FC<LoadFormProps> = ({
   const loadSchema = yup.object().shape({
     idVuelo: yup.string().nullable(),
     fechaVuelo: yup.string().required(),
-    ci: yup.string().nullable(),
+    pasajero: yup.string().required(),
+    nroDocumento: yup.string().required(),
+    costo: yup.string().nullable(),
   })
 
   const {control, handleSubmit, setValue} = useForm({
@@ -53,6 +55,11 @@ export const VentaForm: React.FC<LoadFormProps> = ({
 
   const createEmpleado = data => {
     console.log(data)
+    data = { ...data, detalle: [{
+        pasajero: data.pasajero,
+        nroDocumento: data.nroDocumento,
+        costo: data.costo
+      }]}
     setLoading(true)
     setOpenBackDrop(true)
     fetcherPost(ROUTES.RESERVA_REGISTRO_API, data, session.accessToken as string)
@@ -95,6 +102,15 @@ export const VentaForm: React.FC<LoadFormProps> = ({
           </Grid>
           <Grid item md={4}>
             <TextInput control={control} name="fechaVuelo" label="fechaVuelo" defaultValue={empleado?.fechaVuelo} />
+          </Grid>
+          <Grid item md={4}>
+            <TextInput control={control} name="pasajero" label="pasajero" defaultValue={empleado?.pasajero} />
+          </Grid>
+          <Grid item md={4}>
+            <TextInput control={control} name="nroDocumento" label="nroDocumento" defaultValue={empleado?.nroDocumento} />
+          </Grid>
+          <Grid item md={4}>
+            <TextInput control={control} name="costo" label="costo" defaultValue={empleado?.costo} />
           </Grid>
         </Grid>
 
