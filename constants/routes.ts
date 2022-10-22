@@ -10,6 +10,7 @@ const ROUTES = {
   EMPLEADO_API: formatPath("/api/Empleado"),
   AEREONAVE_API: formatPath("/Aeronaves"),
   CHECKIN_API: formatPath("/Checkin"),
+  RESERVA_REGISTRO_API: formatPath("/Reserva/registro"),
   // AUTH
   RESET_PASSWORD: formatPath("/api/auth/change-password"),
 }

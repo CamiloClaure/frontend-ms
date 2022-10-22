@@ -55,7 +55,7 @@ export const VentaForm: React.FC<LoadFormProps> = ({
     console.log(data)
     setLoading(true)
     setOpenBackDrop(true)
-    fetcherPost(ROUTES.EMPLEADO_API, data, session.accessToken as string)
+    fetcherPost(ROUTES.RESERVA_REGISTRO_API, data, session.accessToken as string)
       .then(response => {
         setOpenBackDrop(false)
         setLoading(false)
