@@ -42,8 +42,8 @@ export const VentaForm: React.FC<LoadFormProps> = ({
 
 
   const loadSchema = yup.object().shape({
-    nombreCompleto: yup.string().nullable(),
-    fechaNacimiento: yup.string().required(),
+    idVuelo: yup.string().nullable(),
+    fechaVuelo: yup.string().required(),
     ci: yup.string().nullable(),
   })
 
@@ -90,13 +90,10 @@ export const VentaForm: React.FC<LoadFormProps> = ({
       <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)} style={{maxWidth: "800px", marginLeft: "30px"}}>
         <Grid container spacing={1}>
           <Grid item md={8}>
-            <TextInput control={control} name="nombreCompleto" label="nombreCompleto" defaultValue={empleado?.nombreCompleto} />
+            <TextInput control={control} name="idVuelo" label="idVuelo" defaultValue={empleado?.idVuelo} />
           </Grid>
           <Grid item md={4}>
-            <TextInput control={control} name="fechaNacimiento" label="fechaNacimiento" defaultValue={empleado?.fechaNacimiento} />
-          </Grid>
-          <Grid item md={2}>
-            <TextInput control={control} name="ci" label="ci" defaultValue={empleado?.ci} />
+            <TextInput control={control} name="fechaVuelo" label="fechaVuelo" defaultValue={empleado?.fechaVuelo} />
           </Grid>
         </Grid>
 

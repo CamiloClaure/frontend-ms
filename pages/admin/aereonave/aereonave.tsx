@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import useSWR from "swr"
 
 import {GridCellParams, GridColDef} from "@mui/x-data-grid-pro"
@@ -7,10 +7,11 @@ import ROUTES from "../../../constants/routes"
 import {fetcherGet} from "../../../hooks/urls"
 import DashboardComponent from "../../../components/dashboardComponent"
 import {DataGridComponent} from "../../../components/data_grid_component"
-import {Box} from "@mui/material"
+import {Box, IconButton} from "@mui/material"
 import clsx from "clsx"
 import {laggy} from "../../../hooks/swrHelper"
 import {AereonaveForm} from "../../../components/AereonaveForm/AereonaveForm";
+import Modal from "../../../components/Modal";
 
 export default function AereonaveView() {
   const headCells: GridColDef[] = [
@@ -31,7 +32,14 @@ export default function AereonaveView() {
   ]
 
   const session = { accessToken: "test"}
-
+  const [openCreate, setOpenCreate] = useState(false)
+  console.log(openCreate)
+  const hideCreate = () => {
+    setOpenCreate(false)
+  }
+  const createAereonave = () => {
+    setOpenCreate(true)
+  }
 
   return (
     <DashboardComponent title={"Crear Aereonave"}>
@@ -50,7 +58,16 @@ export default function AereonaveView() {
           }
         }}>
         {/*<DataGridComponent data={credit_ready_to_send} headCells={headCells} />*/}
-        <AereonaveForm editMode={false}></AereonaveForm>
+        <IconButton
+          onClick={createAereonave}
+          aria-label="delete"
+          size="small"
+          style={{float: "right", marginTop: "-5px"}}>
+          CREAR
+        </IconButton>
+        <Modal title="Crear Aereonave" open={openCreate} handleClose={hideCreate} size="xl">
+          <AereonaveForm editMode={false}></AereonaveForm>
+        </Modal>
       </Box>
     </DashboardComponent>
   )
