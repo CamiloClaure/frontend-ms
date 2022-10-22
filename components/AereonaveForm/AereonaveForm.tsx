@@ -70,6 +70,7 @@ export const AereonaveForm: React.FC<LoadFormProps> = ({
     setOpenBackDrop(true)
     fetcherPost(ROUTES.AEREONAVE_API, data, session.accessToken as string)
       .then(response => {
+        console.log(response)
         setOpenBackDrop(false)
         setLoading(false)
         // onSuccessfulEdit("The aereonave was created successfully")

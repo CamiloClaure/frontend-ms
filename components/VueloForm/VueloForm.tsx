@@ -62,6 +62,7 @@ export const VueloForm: React.FC<LoadFormProps> = ({
     setOpenBackDrop(true)
     fetcherPost(ROUTES.VUELO_CREAR_API, { detalle: { ...data} }, session.accessToken as string)
       .then(response => {
+        console.log(response)
         setOpenBackDrop(false)
         setLoading(false)
         // onSuccessfulEdit("The vuelo was created successfully")

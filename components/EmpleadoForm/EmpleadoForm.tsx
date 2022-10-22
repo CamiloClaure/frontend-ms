@@ -57,6 +57,7 @@ export const EmpleadoForm: React.FC<LoadFormProps> = ({
     setOpenBackDrop(true)
     fetcherPost(ROUTES.EMPLEADO_API, data, session.accessToken as string)
       .then(response => {
+        console.log(response)
         setOpenBackDrop(false)
         setLoading(false)
         // onSuccessfulEdit("The empleado was created successfully")
