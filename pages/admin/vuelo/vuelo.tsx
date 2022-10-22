@@ -22,15 +22,15 @@ export default function VueloView() {
       headerName: "codVuelo",
       flex: 1
     },
-    {field: "horaSalida", headerName: "Order Amount", flex: 1},
-    {field: "horaLLegada", headerName: "Credit Limit", flex: 1},
-    {field: "estado", headerName: "Agreement Status", flex: 1},
-    {field: "precio", headerName: "Term", flex: 1},
-    {field: "stockAsientos", headerName: "Term", flex: 1},
-    {field: "fecha", headerName: "Term", flex: 1},
-    {field: "codRuta", headerName: "Term", flex: 1},
-    {field: "codAeronave", headerName: "Term", flex: 1},
-    {field: "activo", headerName: "Term", flex: 1}
+    {field: "horaSalida", headerName: "horaSalida", flex: 1},
+    {field: "horaLLegada", headerName: "horaLLegada", flex: 1},
+    {field: "estado", headerName: "estado", flex: 1},
+    {field: "precio", headerName: "precio", flex: 1},
+    {field: "stockAsientos", headerName: "stockAsientos", flex: 1},
+    {field: "fecha", headerName: "fecha", flex: 1},
+    {field: "codRuta", headerName: "codRuta", flex: 1},
+    {field: "codAeronave", headerName: "codAeronave", flex: 1},
+    {field: "activo", headerName: "activo", flex: 1}
   ]
 
   const session = { accessToken: "test"}
