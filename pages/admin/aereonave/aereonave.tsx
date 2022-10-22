@@ -28,11 +28,14 @@ export default function AereonaveView() {
     {field: "marca", headerName: "Order Amount", flex: 1},
     {field: "modelo", headerName: "Credit Limit", flex: 1},
     {field: "capacidad", headerName: "Agreement Status", flex: 1},
-    {field: "nroAsientos", headerName: "Term", flex: 1}
+    {field: "nroAsientos", headerName: "Term", flex: 1},
+    {field: "capacidadTanque", headerName: "Term", flex: 1},
+    {field: "aeropuerto", headerName: "Term", flex: 1}
   ]
 
   const session = { accessToken: "test"}
   const [openCreate, setOpenCreate] = useState(false)
+  let {data: values = []} = useSWR([process.env.NEXT_PUBLIC_BASE_URL + ROUTES.AEREONAVE_API], fetcherGet)
   console.log(openCreate)
   const hideCreate = () => {
     setOpenCreate(false)
@@ -57,7 +60,7 @@ export default function AereonaveView() {
             fontWeight: "600"
           }
         }}>
-        {/*<DataGridComponent data={credit_ready_to_send} headCells={headCells} />*/}
+        <DataGridComponent data={values} headCells={headCells} />
         <IconButton
           onClick={createAereonave}
           aria-label="delete"

@@ -1,6 +1,7 @@
 import {DataGridPro, GridColDef, GridToolbarContainer, GridToolbarExport} from "@mui/x-data-grid-pro"
 import {Paper} from "@mui/material"
 import React, {ReactNode} from "react"
+import {DataGrid} from "@mui/x-data-grid";
 
 function CustomToolbar() {
   return (
@@ -55,7 +56,7 @@ export const DataGridComponent: React.FC<DataGridProps> = ({
             }
       }>
       {children}
-      <DataGridPro
+      <DataGrid
         rows={data}
         columns={headCells}
         checkboxSelection={checkboxSelection}
